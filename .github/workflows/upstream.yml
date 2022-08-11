@@ -3,6 +3,7 @@ name: Upstream self-hosted
 on:
   push:
     branches: [ master, ci ]
+    paths: [ '**.c', '**.h' ]
 
 jobs:
   selfhosted:
@@ -13,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ obsdsnap, obsdsnap-i386, obsd69, obsd68 ]
+        os: [ obsdsnap, obsdsnap-i386 ]
         configs: [ default, without-openssl ]
     steps:
     - uses: actions/checkout@v2
@@ -31,6 +32,7 @@ jobs:
       run: vmrun "cd /usr/src/usr.bin/ssh && sudo make install"
     - name: make tests
       run: vmrun "cd /usr/src/regress/usr.bin/ssh && make obj && make clean && if test '${{ matrix.configs }}' = 'without-openssl'; then make SUDO=sudo OPENSSL=no; else make SUDO=sudo; fi"
+      timeout-minutes: 300
     - name: save logs
       if: failure()
       uses: actions/upload-artifact@v2
