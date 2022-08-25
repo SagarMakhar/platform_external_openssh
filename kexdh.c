@@ -42,6 +42,7 @@
 #include "digest.h"
 #include "ssherr.h"
 #include "dh.h"
+#include "log.h"
 
 int
 kex_dh_keygen(struct kex *kex)
