@@ -693,7 +693,7 @@ do_convert_from_pkcs8(struct sshkey **k, int *private)
 		    identity_file);
 	}
 	fclose(fp);
-	switch (EVP_PKEY_base_id(pubkey)) {
+	switch (EVP_PKEY_id(pubkey)) {
 	case EVP_PKEY_RSA:
 		if ((*k = sshkey_new(KEY_UNSPEC)) == NULL)
 			fatal("sshkey_new failed");
@@ -717,7 +717,7 @@ do_convert_from_pkcs8(struct sshkey **k, int *private)
 #endif
 	default:
 		fatal_f("unsupported pubkey type %d",
-		    EVP_PKEY_base_id(pubkey));
+		    EVP_PKEY_id(pubkey));
 	}
 	EVP_PKEY_free(pubkey);
 	return;

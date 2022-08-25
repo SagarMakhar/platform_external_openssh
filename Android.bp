@@ -18,6 +18,8 @@ cc_defaults {
         "-Wno-incompatible-pointer-types",
         "-Wno-pointer-sign",
         "-Wno-unused-parameter",
+        "-Wno-sign-compare",
+        "-Wno-int-conversion",
     ],
     include_dirs: [
         "external/openssh/prebuilt-intermediates",
@@ -251,16 +253,4 @@ cc_binary {
         "sshsig.c",
     ],
     shared_libs: ["libssh"],
-}
-
-prebuilt_etc {
-    name: "sshd_config",
-    src: "sshd_config.android",
-    sub_dir: "ssh",
-}
-
-sh_binary {
-    name: "start-ssh",
-    vendor: true,
-    src: "start-ssh",
 }

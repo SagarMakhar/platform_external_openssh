@@ -197,7 +197,7 @@
 /* #undef HAVE_ADDR_V6_IN_UTMPX */
 
 /* Define to 1 if you have the `arc4random' function. */
-#define HAVE_ARC4RANDOM 1
+//#define HAVE_ARC4RANDOM 1
 
 /* Define to 1 if you have the `arc4random_buf' function. */
 #define HAVE_ARC4RANDOM_BUF 1
@@ -277,7 +277,7 @@
 
 /* Define to 1 if you have the `bzero' function. */
 /* For Android, bzero is a builtin, which isn't detected by configure correctly */
-#define HAVE_BZERO 1
+#define HAVE_BZERO 0
 
 /* calloc(0, x) returns NULL */
 #define HAVE_CALLOC 0
@@ -572,7 +572,7 @@
 #define HAVE_EXIT_IN_UTMP 1
 
 /* Define to 1 if you have the `explicit_bzero' function. */
-/* #undef HAVE_EXPLICIT_BZERO */
+//HAVE_EXPLICIT_BZERO
 
 /* Define to 1 if you have the `explicit_memset' function. */
 /* #undef HAVE_EXPLICIT_MEMSET */
@@ -1130,7 +1130,7 @@
 #define HAVE_REALLOC 0
 
 /* Define to 1 if you have the `reallocarray' function. */
-#define HAVE_REALLOCARRAY 1
+//#define HAVE_REALLOCARRAY 0
 
 /* Define to 1 if you have the `realpath' function. */
 #define HAVE_REALPATH 1
