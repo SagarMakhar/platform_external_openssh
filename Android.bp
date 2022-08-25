@@ -14,7 +14,6 @@
 
 cc_defaults {
     name: "ssh_defaults",
-    vendor: true,
     cflags: [
         "-Wno-incompatible-pointer-types",
         "-Wno-pointer-sign",
