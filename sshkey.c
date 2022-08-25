@@ -1439,7 +1439,7 @@ sshkey_read(struct sshkey *ret, char **cpp)
 		ret->rsa = k->rsa;
 		k->rsa = NULL;
 #ifdef DEBUG_PK
-		RSA_print_fp(stderr, ret->rsa, 8);
+		fprintf(stderr, ret->rsa, 8);
 #endif
 		break;
 	case KEY_DSA:
@@ -1447,7 +1447,7 @@ sshkey_read(struct sshkey *ret, char **cpp)
 		ret->dsa = k->dsa;
 		k->dsa = NULL;
 #ifdef DEBUG_PK
-		DSA_print_fp(stderr, ret->dsa, 8);
+		fprintf(stderr, ret->dsa, 8);
 #endif
 		break;
 # ifdef OPENSSL_HAS_ECC
@@ -2425,7 +2425,7 @@ sshkey_from_blob_internal(struct sshbuf *b, struct sshkey **keyp,
 		if ((ret = check_rsa_length(key->rsa)) != 0)
 			goto out;
 #ifdef DEBUG_PK
-		RSA_print_fp(stderr, key->rsa, 8);
+		fprintf(stderr, key->rsa, 8);
 #endif
 		break;
 	case KEY_DSA_CERT:
@@ -2458,7 +2458,7 @@ sshkey_from_blob_internal(struct sshbuf *b, struct sshkey **keyp,
 		}
 		dsa_pub_key = NULL; /* transferred */
 #ifdef DEBUG_PK
-		DSA_print_fp(stderr, key->dsa, 8);
+		fprintf(stderr, key->dsa, 8);
 #endif
 		break;
 # ifdef OPENSSL_HAS_ECC
@@ -4650,7 +4650,7 @@ sshkey_parse_private_pem_fileblob(struct sshbuf *blob, int type,
 		prv->rsa = EVP_PKEY_get1_RSA(pk);
 		prv->type = KEY_RSA;
 #ifdef DEBUG_PK
-		RSA_print_fp(stderr, prv->rsa, 8);
+		fprintf(stderr, prv->rsa, 8);
 #endif
 		if (RSA_blinding_on(prv->rsa, NULL) != 1) {
 			r = SSH_ERR_LIBCRYPTO_ERROR;
@@ -4667,7 +4667,7 @@ sshkey_parse_private_pem_fileblob(struct sshbuf *blob, int type,
 		prv->dsa = EVP_PKEY_get1_DSA(pk);
 		prv->type = KEY_DSA;
 #ifdef DEBUG_PK
-		DSA_print_fp(stderr, prv->dsa, 8);
+		fprintf(stderr, prv->dsa, 8);
 #endif
 #ifdef OPENSSL_HAS_ECC
 	} else if (EVP_PKEY_id(pk) == EVP_PKEY_EC &&
