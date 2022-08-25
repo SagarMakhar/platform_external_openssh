@@ -7,7 +7,7 @@
 
 #include "includes.h"
 
-#include <string.h>
+#include <strings.h>
 
 /*
  * explicit_bzero - don't let the compiler optimize away bzero
@@ -39,7 +39,6 @@ explicit_bzero(void *p, size_t n)
  * Indirect bzero through a volatile pointer to hopefully avoid
  * dead-store optimisation eliminating the call.
  */
-//static void (* volatile ssh_bzero)(void *, size_t) = bzero;
 
 void
 explicit_bzero(void *p, size_t n)

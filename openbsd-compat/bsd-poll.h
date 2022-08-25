@@ -38,13 +38,12 @@
 #endif
 
 #ifndef HAVE_STRUCT_POLLFD_FD
-#ifndef ANDROID
 typedef struct pollfd {
 	int	fd;
 	short	events;
 	short	revents;
 } pollfd_t;
-#endif
+
 #define	POLLIN		0x0001
 #define	POLLPRI		0x0002
 #define	POLLOUT		0x0004

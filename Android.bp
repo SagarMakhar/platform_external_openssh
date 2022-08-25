@@ -19,9 +19,9 @@ cc_defaults {
         "-Wno-pointer-sign",
         "-Wno-unused-parameter",
         "-Wno-sign-compare",
+        "-Wno-int-conversion",
     ],
     include_dirs: [
-        "external/openssh/openbsd-compat",
         "external/openssh/prebuilt-intermediates",
     ],
     shared_libs: [
@@ -35,7 +35,10 @@ cc_defaults {
 cc_library {
     name: "libssh",
     defaults: ["ssh_defaults"],
-    cflags: ["-DENABLE_SK"],
+    include_dirs: [
+        "external/openssh/openbsd-compat",
+    ],
+    cflags: [],
     srcs: [
         "addr.c",
         "addrmatch.c",
@@ -93,6 +96,7 @@ cc_library {
         "openbsd-compat/bsd-malloc.c",
         "openbsd-compat/bsd-misc.c",
         "openbsd-compat/bsd-openpty.c",
+        "openbsd-compat/bsd-pselect.c",
         "openbsd-compat/bsd-signal.c",
         "openbsd-compat/bsd-statvfs.c",
         "openbsd-compat/explicit_bzero.c",
@@ -122,8 +126,8 @@ cc_library {
         "readpass.c",
         "rijndael.c",
         "sc25519.c",
-        "smult_curve25519_ref.c",
         "sntrup761.c",
+        "smult_curve25519_ref.c",
         "ssh-dss.c",
         "ssh-ecdsa.c",
         "ssh-ecdsa-sk.c",
@@ -250,16 +254,3 @@ cc_binary {
     ],
     shared_libs: ["libssh"],
 }
-
-//prebuilt_etc {
-//    name: "sshd_config",
-//    vendor: true,
-//    src: "sshd_config.android",
-//    relative_install_path: "ssh",
-//}
-
-//sh_binary {
-//    name: "start-ssh",
-//    vendor: true,
-//    src: "start-ssh",
-//}

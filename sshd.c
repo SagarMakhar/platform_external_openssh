@@ -2416,11 +2416,10 @@ do_ssh2_kex(struct ssh *ssh)
 
 #ifdef DEBUG_KEXDH
 	/* send 1st encrypted/maced/compressed message */
-	if ((r = sshpkt_start(ssh, SSH2_MSG_IGNORE)) != 0 ||
-	    (r = sshpkt_put_cstring(ssh, "markus")) != 0 ||
-	    (r = sshpkt_send(ssh)) != 0 ||
-	    (r = ssh_packet_write_wait(ssh)) != 0)
-		fatal_fr(r, "send test");
+	packet_start(SSH2_MSG_IGNORE);
+	packet_put_cstring("markus");
+	packet_send();
+	packet_write_wait();
 #endif
 	debug("KEX done");
 }
